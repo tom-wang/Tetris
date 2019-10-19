@@ -20,8 +20,8 @@ function tetrisInit(tetris, rTimes){
 }
 
 function gameStart(){
-    ctx.clearRect(0,0,300,600)
-    blockCtx.clearRect(0,0,120,120)
+    ctx.clearRect(0,0,240,600)
+    blockCtx.clearRect(0,0,80,80)
     document.getElementById('levelShow').value = levels;
     document.getElementById('scoreShow').value = scores;
     document.getElementById('speedShow').value = STEP + 1;
@@ -97,7 +97,7 @@ var opList = [];
 function rightOver(t){
     for(let i = 0; i < 4; i++){
         for(let j = 0; j < 4; j++){
-            if(t.data[i][j] && t.x + i >= 9){
+            if(t.data[i][j] && t.x + i >= 11){
                 return false;
             }
         }
@@ -109,7 +109,7 @@ function evaluate(t){
     let ct = t.y ;
     let cct = t.cleanCount();
     if(cct > 1)
-        ct += 10 * (cct - 1);
+        ct += 12 * (cct - 1);
     for(let i = 0; i < 4; i++){
         for(let j = 0; j < 4; j++){
             if(t.data[i][j]){
@@ -131,7 +131,7 @@ function evaluate(t){
                     }
                     else{
                         let k = 2;
-                        while(t.y+j+k <= 19){
+                        while(t.y+j+k <= 29){
                             if(t.canSee(t.x +i, t.y + j + k)){
                                 ct -= 1;
                                 break;

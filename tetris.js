@@ -1,20 +1,36 @@
 "use strict";
 
 var Block = require('./block')
+// const SHAPES = [
+//     [ 1, 1, 1, 1 ], //I型
+//     [ 1, 1, 1, 0,
+//       1 ], //L型
+//     [ 1, 1, 1, 0,
+//       0, 0, 1 ], //J型
+//     [ 0, 1, 1, 0,
+//       0, 1, 1 ], //O型
+//     [ 1, 1, 0, 0,
+//       0, 1, 1 ], //Z型
+//     [ 0, 1, 1, 0,
+//       1, 1 ], //S型
+//     [ 0, 1, 0, 0,
+//       1, 1, 1 ] //T型
+// ];
 const SHAPES = [
-    [ 1, 1, 1, 1 ],
-    [ 1, 1, 1, 0,
-      1 ],
-    [ 1, 1, 1, 0,
-      0, 0, 1 ],
     [ 0, 1, 1, 0,
-      0, 1, 1 ],
-    [ 1, 1, 0, 0,
-      0, 1, 1 ],
-    [ 0, 1, 1, 0,
-      1, 1 ],
-    [ 0, 1, 0, 0,
-      1, 1, 1 ]
+      1, 1 ], //S型
+      [ 0, 1, 1, 0,
+        1, 1 ], //S型
+        [ 0, 1, 1, 0,
+          1, 1 ], //S型
+          [ 0, 1, 1, 0,
+            1, 1 ], //S型
+            [ 0, 1, 1, 0,
+              1, 1 ], //S型
+              [ 0, 1, 1, 0,
+                1, 1 ], //S型
+                [ 0, 1, 1, 0,
+                  1, 1 ], //S型
 ];
 const COLORS = [
     'brown', 'olive', 'blue', 'chocolate', 'gray', 'green', 'purple'
@@ -45,17 +61,17 @@ class Tetris {
         }
     }
     cleanCount(){
-        let h = 19, levelCount = 0;
+        let h = 29, levelCount = 0;
         while(h >= 0){
             let count = 0;
-            for(let i = 0; i< 10; i++){
+            for(let i = 0; i< 12; i++){
                 if(this.canSee(i,h)){
                     count++;
                 }
             } 
             if(count == 0){
                 levelCount++;
-            }else if(count == 10){
+            }else if(count == 12){
                 break;
             }
             h--;
@@ -63,10 +79,10 @@ class Tetris {
         return levelCount;
     }
     cleanup(){
-        let h = 19, levelCount = 0;
+        let h = 29, levelCount = 0;
         while(h >= 0){
             let count = 0;
-            for(let i = 0; i< 10; i++){
+            for(let i = 0; i< 12; i++){
                 if(this.canSee(i,h)){
                     count++;
                 }
@@ -78,7 +94,7 @@ class Tetris {
                     SOUNDS['score'].play();
                 while(level >= 0){
                     let ct = 0;
-                    for(let j = 0; j < 10; j++){
+                    for(let j = 0; j < 12; j++){
                         this.block.erase(j,level);
                         if(this.canSee(j,level-1)){
                             ct++;
@@ -87,13 +103,13 @@ class Tetris {
                             bk.draw(j,level)
                         }
                     }
-                    if(ct == 10){
+                    if(ct == 12){
                         break;
                     }else{
                         level--;
                     }
                 }
-            }else if(count == 10){
+            }else if(count == 12){
                 break;
             }else{
                 h--;
@@ -156,7 +172,7 @@ class Tetris {
         }
     }
     moveDown(){
-        let yMax = 19;
+        let yMax = 29;
         for(let i = 0; i < 4; i++){
             for(let j = 0; j < 4; j++){
                 if(this.data[i][j] && (j ==3 || this.data[i][j+1] == 0)){
@@ -275,7 +291,7 @@ class Tetris {
         }
     }
     canSee(x,y){
-        if(x < 0 || x > 9 || y > 19)
+        if(x < 0 || x > 11 || y > 29)
             return false;
         return this.block.canSee(x,y) == 0;
     }

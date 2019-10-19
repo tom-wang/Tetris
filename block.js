@@ -1,6 +1,6 @@
 "use strict";
 
-const BLOCKWIDTH = 30;
+const BLOCKWIDTH = 20;
 
 class Block{
     constructor(ctx,fillColor,strokeColor){
@@ -18,7 +18,7 @@ class Block{
         this.ctx.restore();
     }
     erase(x,y){
-        this.ctx.clearRect(x*this.width , y*this.width , 30, 30)
+        this.ctx.clearRect(x*this.width , y*this.width , 20, 20)
     }
     canSee(x,y){
         let c = this.ctx.getImageData(x*this.width+9,y*this.width+9,1,1)

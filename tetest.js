@@ -35,17 +35,17 @@ class Tetest {
         }
     }
     cleanCount(){
-        let h = 19, levelCount = 0;
+        let h = 29, levelCount = 0;
         while(h >= 0){
             let count = 0;
-            for(let i = 0; i< 10; i++){
+            for(let i = 0; i< 12; i++){
                 if(this.canSee(i,h)){
                     count++;
                 }
             } 
             if(count == 0){
                 levelCount++;
-            }else if(count == 10){
+            }else if(count == 12){
                 break;
             }
             h--;
@@ -66,7 +66,7 @@ class Tetest {
         return true;
     }
     moveDown(){
-        let yMax = 19;
+        let yMax = 29;
         for(let i = 0; i < 4; i++){
             for(let j = 0; j < 4; j++){
                 if(this.data[i][j] && (j ==3 || this.data[i][j+1] == 0)){
@@ -147,7 +147,7 @@ class Tetest {
         }
     }
     canSee(x,y){
-        if(x < 0 || x > 9 || y > 19)
+        if(x < 0 || x > 11 || y > 29)
             return false;
         return this.block.canSee(x,y) == 0;
     }
